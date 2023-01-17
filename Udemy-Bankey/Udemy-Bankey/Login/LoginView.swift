@@ -9,9 +9,10 @@ import UIKit
 
 class LoginView: UIView {
     
+    let usernameTextField = UITextField()
+    let passwordTextField = UITextField()
+    
     private let stackView = UIStackView()
-    private let usernameTextField = UITextField()
-    private let passwordTextField = UITextField()
     private let dividerView = UIView()
     
     override init(frame: CGRect) {
@@ -92,11 +93,7 @@ extension LoginView: UITextFieldDelegate {
     }
     
     func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
-        if textField.text != "" {
-            return true
-        } else {
-            return false
-        }
+       return true
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
