@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
+
 protocol LoginViewControllerDelegate: AnyObject {
     func didLogin()
 }
@@ -35,6 +39,11 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        sighInButton.configuration?.showsActivityIndicator = false
     }
 }
 
@@ -140,9 +149,6 @@ extension LoginViewController {
             errorMessageLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
     }
-    
-  
-    
 }
 
 // MARK: - Actions
@@ -160,7 +166,9 @@ extension LoginViewController {
         }
         
         if username.isEmpty || password.isEmpty {
-            configureView(withMessage: "Username or password should not be blank")
+//            configureView(withMessage: "Username or password should not be blank")
+            sighInButton.configuration?.showsActivityIndicator = true
+            delegate?.didLogin()
             return
         }
         
