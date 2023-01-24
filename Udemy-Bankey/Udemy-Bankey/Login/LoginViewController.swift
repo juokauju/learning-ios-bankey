@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func didLogin()
+}
+
 class LoginViewController: UIViewController {
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     private let titleLabelStackView = UIStackView()
     private let titleLabel = UILabel()
@@ -142,7 +148,7 @@ extension LoginViewController {
 // MARK: - Actions
 
 extension LoginViewController {
-    @objc private func sighInTapped(sender: UIButton) {
+    @objc private func sighInTapped(_ sender: UIButton) {
         errorMessageLabel.isHidden = true
         login()
     }
@@ -160,6 +166,7 @@ extension LoginViewController {
         
         if username == "Kevin" && password == "Welcome" {
             sighInButton.configuration?.showsActivityIndicator = true
+            delegate?.didLogin()
         } else {
             configureView(withMessage: "Incorrect username or password")
         }
