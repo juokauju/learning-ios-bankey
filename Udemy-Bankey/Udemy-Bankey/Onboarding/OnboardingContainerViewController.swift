@@ -7,12 +7,20 @@
 
 import UIKit
 
-class OnboardingContainerViewController: UIViewController {
+protocol OnboardingContainerViewControllerDelegate: AnyObject {
+    func didFinishOnboarding()
+}
 
-    let pageViewController: UIPageViewController
-    var pages = [UIViewController]()
-    var currentVC: UIViewController
-    let closeButton = UIButton(type: .system)
+class OnboardingContainerViewController: UIViewController {
+    
+    weak var delegate: OnboardingContainerViewControllerDelegate?
+
+    private let pageViewController: UIPageViewController
+    
+    private var pages = [UIViewController]()
+    private var currentVC: UIViewController
+    
+    private let closeButton = UIButton(type: .system)
     
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -120,6 +128,6 @@ extension OnboardingContainerViewController: UIPageViewControllerDataSource {
 // MARK: - Actions
 extension OnboardingContainerViewController {
     @objc private func closeTapped(_ sender: UIButton) {
-        
+        delegate?.didFinishOnboarding()
     }
 }
