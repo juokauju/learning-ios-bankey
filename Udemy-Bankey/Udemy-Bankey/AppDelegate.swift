@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private let loginViewController = LoginViewController()
     private let onboardingContainerViewController = OnboardingContainerViewController()
-    private let logoutViewController = LogoutViewController()
-    
     private let mainViewController = MainViewController()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -27,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.backgroundColor = .systemBackground
+        setMainViewControllerAndNavigationAppearance()
         window?.rootViewController = loginViewController
 
         return true
@@ -35,7 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func confirmDelegates() {
         loginViewController.delegate = self
         onboardingContainerViewController.delegate = self
-        logoutViewController.delegate = self
+    }
+    
+    private func setMainViewControllerAndNavigationAppearance() {
+        mainViewController.setStatusBar()
+
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().backgroundColor = appColor
     }
 }
 
