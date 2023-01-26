@@ -26,14 +26,24 @@ class AccountSummaryViewController: UIViewController {
 extension AccountSummaryViewController {
     private func setup() {
         setupTableView()
+        setupTableHeaderView()
     }
     
     private func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
         
+        registerCell()
+        
         view.addSubview(tableView)
         addTableViewConstraints()
+    }
+    
+    private func registerCell() {
+        tableView.register(AccountSummaryCell.self,
+                           forCellReuseIdentifier: AccountSummaryCell.reuseID)
+        tableView.rowHeight = AccountSummaryCell.rowHeight
+        tableView.tableFooterView = UIView()
     }
     
     private func addTableViewConstraints() {
@@ -59,8 +69,10 @@ extension AccountSummaryViewController {
 
 extension AccountSummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = games[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AccountSummaryCell.reuseID, for: indexPath) as? AccountSummaryCell
+        else {
+            return UITableViewCell()
+        }
         return cell
     }
     
