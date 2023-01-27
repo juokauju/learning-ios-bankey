@@ -18,11 +18,11 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="144"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="151" translatesAutoresizingMaskIntoConstraints="NO" id="6jQ-iS-9cC">
+                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" alignment="top" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="6jQ-iS-9cC">
                     <rect key="frame" x="16" y="16" width="382" height="112"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="K9e-Ih-fUV">
-                            <rect key="frame" x="0.0" y="0.0" width="131" height="103"/>
+                            <rect key="frame" x="0.0" y="0.0" width="266" height="103"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bankey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8T-cW-7Gk">
                                     <rect key="frame" x="0.0" y="0.0" width="79" height="30"/>
