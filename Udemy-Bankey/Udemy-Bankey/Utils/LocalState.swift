@@ -9,15 +9,15 @@ import Foundation
 
 public class LocalState {
     private enum Keys: String {
-        case hasOnboarding
+        case hasOnboarded
     }
     
-    public static var hasOnboarding: Bool {
+    public static var hasOnboarded: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: Keys.hasOnboarding.rawValue)
+            return UserDefaults.standard.bool(forKey: Keys.hasOnboarded.rawValue)
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: Keys.hasOnboarding.rawValue)
+            UserDefaults.standard.set(newValue, forKey: Keys.hasOnboarded.rawValue)
         }
     }
 }
