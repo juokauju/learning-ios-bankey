@@ -67,6 +67,7 @@ extension LoginView {
         passwordTextField.placeholder = "Password"
         passwordTextField.isSecureTextEntry = true
         passwordTextField.delegate = self
+        passwordTextField.enablePasswordToggle()
     }
     
     private func setDividerView() {
@@ -84,7 +85,7 @@ extension LoginView {
     }
 }
 
-// MARK: - UITextFiueldDelegate
+// MARK: - UITextFieldDelegate
 extension LoginView: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         usernameTextField.endEditing(true)

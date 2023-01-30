@@ -13,16 +13,24 @@ class AccountSummaryViewController: UIViewController {
     
     var tableView = UITableView()
     
+    lazy var logoutBarButtonItem: UIBarButtonItem = {
+        let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
+        logoutBarButtonItem.tintColor = .label
+        return logoutBarButtonItem
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
 }
 
+// MARK: - Setup
 extension AccountSummaryViewController {
     private func setup() {
         setupTableView()
         setupTableHeaderView()
+        setupNavigationBar()
         fetchData()
     }
     
@@ -62,9 +70,21 @@ extension AccountSummaryViewController {
         header.frame.size = size
         
         tableView.tableHeaderView = header
-    }       
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItem = logoutBarButtonItem
+    }
 }
 
+// MARK: - Actions
+extension AccountSummaryViewController {
+    @objc private func logoutTapped(_ sender: UIButton) {
+        NotificationCenter.default.post(name: .logout, object: nil)
+    }
+}
+
+// MARK: - TableView data source
 extension AccountSummaryViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard !accounts.isEmpty else { return UITableViewCell() }
@@ -81,12 +101,14 @@ extension AccountSummaryViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - TableView delegate
 extension AccountSummaryViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
 }
 
+// MARK: - Fetch
 extension AccountSummaryViewController {
     private func fetchData() {
         let savings = AccountSummaryCell.ViewModel(accountType: .Banking,
@@ -116,3 +138,4 @@ extension AccountSummaryViewController {
         accounts.append(investment2)
     }
 }
+
