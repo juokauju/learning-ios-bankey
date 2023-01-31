@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol LogoutDelegate: AnyObject {
-    func didLogout()
-}
-
 protocol LoginViewControllerDelegate: AnyObject {
     func didLogin()
 }
@@ -34,6 +30,11 @@ class LoginViewController: UIViewController {
     private var password: String? {
         loginView.passwordTextField.text
     }
+    
+    private var leadingEdgeOnScreen: CGFloat = 16
+    private var leadingEdgeOffScreen: CGFloat = -1000
+    
+    private var titleLeadingAnchor: NSLayoutConstraint?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,10 @@ class LoginViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         sighInButton.configuration?.showsActivityIndicator = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        animate()
     }
 }
 
@@ -89,6 +94,7 @@ extension LoginViewController {
         titleLabel.font = UIFont.preferredFont(forTextStyle: .largeTitle)
         titleLabel.adjustsFontForContentSizeCategory = true
         titleLabel.text = "Bankey"
+        titleLabel.alpha = 0
     }
     
     private func setSubtitleLabel() {
@@ -98,6 +104,7 @@ extension LoginViewController {
         subtitleLabel.adjustsFontForContentSizeCategory = true
         subtitleLabel.numberOfLines = 0
         subtitleLabel.text = "Your premium source for all things banking!"
+        subtitleLabel.alpha = 0
     }
     
     private func setSighInButton() {
@@ -121,9 +128,11 @@ extension LoginViewController {
     private func addTitleLabelStackViewConstraints() {
         NSLayoutConstraint.activate([
             loginView.topAnchor.constraint(equalToSystemSpacingBelow: titleLabelStackView.bottomAnchor, multiplier: 3),
-            titleLabelStackView.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             titleLabelStackView.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
+        
+        titleLeadingAnchor = titleLabelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: leadingEdgeOffScreen)
+        titleLeadingAnchor?.isActive = true
     }
     
     private func addLoginViewConstraints() {
@@ -183,6 +192,24 @@ extension LoginViewController {
     private func configureView(withMessage message: String) {
         errorMessageLabel.isHidden = false
         errorMessageLabel.text = message
+    }
+}
+
+extension LoginViewController {
+    private func animate() {
+        let duration = 0.8
+        let animator1 = UIViewPropertyAnimator(duration: duration, curve: .easeInOut) {
+            self.titleLeadingAnchor?.constant = self.leadingEdgeOnScreen
+            self.view.layoutIfNeeded()
+        }
+        animator1.startAnimation()
+        
+        let animator2 = UIViewPropertyAnimator(duration: duration*2, curve: .easeInOut) {
+            self.titleLabel.alpha = 1
+            self.subtitleLabel.alpha = 1
+            self.view.layoutIfNeeded()
+        }
+        animator2.startAnimation(afterDelay: 0.2)
     }
 }
 
