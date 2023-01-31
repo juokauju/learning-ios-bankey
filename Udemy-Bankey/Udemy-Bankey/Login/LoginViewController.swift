@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
     private let subtitleLabel = UILabel()
     
     private let loginView = LoginView()
-    private let sighInButton = UIButton(type: .system)
+    private let signInButton = UIButton(type: .system)
     private let errorMessageLabel = UILabel()
     
     private var username: String? {
@@ -44,7 +44,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        sighInButton.configuration?.showsActivityIndicator = false
+        signInButton.configuration?.showsActivityIndicator = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +65,7 @@ extension LoginViewController {
     private func layout() {
         view.addSubview(titleLabelStackView)
         view.addSubview(loginView)
-        view.addSubview(sighInButton)
+        view.addSubview(signInButton)
         view.addSubview(errorMessageLabel)
         
         addTitleLabelStackViewConstraints()
@@ -108,11 +108,11 @@ extension LoginViewController {
     }
     
     private func setSighInButton() {
-        sighInButton.translatesAutoresizingMaskIntoConstraints = false
-        sighInButton.configuration = .filled()
-        sighInButton.configuration?.imagePadding = 8
-        sighInButton.setTitle("Sigh In", for: [])
-        sighInButton.addTarget(self, action: #selector(sighInTapped), for: .primaryActionTriggered)
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
+        signInButton.configuration = .filled()
+        signInButton.configuration?.imagePadding = 8
+        signInButton.setTitle("Sigh In", for: [])
+        signInButton.addTarget(self, action: #selector(sighInTapped), for: .primaryActionTriggered)
     }
     
     private func setErrorMessageLabel() {
@@ -145,15 +145,15 @@ extension LoginViewController {
     
     private func addSighInButtonConstraints() {
         NSLayoutConstraint.activate([
-            sighInButton.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 2),
-            sighInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
-            sighInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
+            signInButton.topAnchor.constraint(equalToSystemSpacingBelow: loginView.bottomAnchor, multiplier: 2),
+            signInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
+            signInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
     }
     
     private func addErrorMessageLabelConstraints() {
         NSLayoutConstraint.activate([
-            errorMessageLabel.topAnchor.constraint(equalToSystemSpacingBelow: sighInButton.bottomAnchor, multiplier: 2),
+            errorMessageLabel.topAnchor.constraint(equalToSystemSpacingBelow: signInButton.bottomAnchor, multiplier: 2),
             errorMessageLabel.leadingAnchor.constraint(equalTo: loginView.leadingAnchor),
             errorMessageLabel.trailingAnchor.constraint(equalTo: loginView.trailingAnchor)
         ])
@@ -175,23 +175,22 @@ extension LoginViewController {
         }
         
         if username.isEmpty || password.isEmpty {
-//            configureView(withMessage: "Username or password should not be blank")
-            sighInButton.configuration?.showsActivityIndicator = true
-            delegate?.didLogin()
+            configureView(withMessage: "Username / password cannot be blank")
             return
         }
-        
-        if username == "Kevin" && password == "Welcome" {
-            sighInButton.configuration?.showsActivityIndicator = true
+            
+        if username == "Flynn" && password == "Welcome" {
+            signInButton.configuration?.showsActivityIndicator = true
             delegate?.didLogin()
         } else {
-            configureView(withMessage: "Incorrect username or password")
+            configureView(withMessage: "Incorrect username / password")
         }
     }
     
     private func configureView(withMessage message: String) {
         errorMessageLabel.isHidden = false
         errorMessageLabel.text = message
+        shakeButton()
     }
 }
 
@@ -210,6 +209,17 @@ extension LoginViewController {
             self.view.layoutIfNeeded()
         }
         animator2.startAnimation(afterDelay: 0.2)
+    }
+    
+    private func shakeButton() {
+        let animation = CAKeyframeAnimation()
+        animation.keyPath = "position.x"
+        animation.values = [0, 10, -10, 10, 0]
+        animation.keyTimes = [0, 0.16, 0.5, 0.83, 1]
+        animation.duration = 0.4
+        
+        animation.isAdditive = true
+        signInButton.layer.add(animation, forKey: "shake")
     }
 }
 
