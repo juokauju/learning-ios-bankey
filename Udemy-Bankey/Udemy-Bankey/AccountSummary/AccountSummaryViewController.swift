@@ -10,17 +10,17 @@ import UIKit
 class AccountSummaryViewController: UIViewController {
     
     // Request Models
-    var profile: Profile?
-    var accounts: [Account] = []
+    private var profile: Profile?
+    private var accounts: [Account] = []
         
     // View Models
-    var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
-    var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
+    private var headerViewModel = AccountSummaryHeaderView.ViewModel(welcomeMessage: "Welcome", name: "", date: Date())
+    private var accountCellViewModels: [AccountSummaryCell.ViewModel] = []
     
-    var tableView = UITableView()
-    var headerView = AccountSummaryHeaderView(frame: .zero)
+    private var tableView = UITableView()
+    private var headerView = AccountSummaryHeaderView(frame: .zero)
     
-    lazy var logoutBarButtonItem: UIBarButtonItem = {
+    private lazy var logoutBarButtonItem: UIBarButtonItem = {
         let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
         logoutBarButtonItem.tintColor = .label
         return logoutBarButtonItem
@@ -38,7 +38,7 @@ extension AccountSummaryViewController {
         setupTableView()
         setupTableHeaderView()
         setupNavigationBar()
-        fetchDataAndLoadViews()
+        fetchData()
     }
     
     private func setupTableView() {
@@ -115,28 +115,35 @@ extension AccountSummaryViewController: UITableViewDelegate {
 
 // MARK: - Networking
 extension AccountSummaryViewController {
-    private func fetchDataAndLoadViews() {
+    private func fetchData() {
+        let group = DispatchGroup()
         
+        group.enter()
         fetchProfile(forUserId: "1") { result in
             switch result {
             case .success(let profile):
                 self.profile = profile
                 self.configureTableHeaderView(with: profile)
-                self.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            group.leave()
         }
         
+        group.enter()
         fetchAccounts(forUserId: "1") { result in
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
                 self.configureTableCells(with: accounts)
-                self.tableView.reloadData()
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.tableView.reloadData()
         }
     }
     
