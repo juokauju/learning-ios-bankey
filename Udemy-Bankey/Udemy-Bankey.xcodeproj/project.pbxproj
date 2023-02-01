@@ -16,6 +16,8 @@
 		7C4E5BF3298930B0004C97E2 /* ShakeyBellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BF2298930B0004C97E2 /* ShakeyBellView.swift */; };
 		7C4E5BF529894C3D004C97E2 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BF429894C3D004C97E2 /* Date+Utils.swift */; };
 		7C4E5BF729895201004C97E2 /* AccountSummaryViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BF629895201004C97E2 /* AccountSummaryViewController+Networking.swift */; };
+		7C4E5BFB2989A7ED004C97E2 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BFA2989A7ED004C97E2 /* ProfileTests.swift */; };
+		7C4E5BFD298A74CA004C97E2 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BFC298A74CA004C97E2 /* AccountTests.swift */; };
 		7C5CEE632975608600C788DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CEE622975608600C788DF /* AppDelegate.swift */; };
 		7C5CEE672975608600C788DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CEE662975608600C788DF /* LoginViewController.swift */; };
 		7C5CEE6C2975608C00C788DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C5CEE6B2975608C00C788DF /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		7C4E5BF2298930B0004C97E2 /* ShakeyBellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeyBellView.swift; sourceTree = "<group>"; };
 		7C4E5BF429894C3D004C97E2 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		7C4E5BF629895201004C97E2 /* AccountSummaryViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryViewController+Networking.swift"; sourceTree = "<group>"; };
+		7C4E5BFA2989A7ED004C97E2 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
+		7C4E5BFC298A74CA004C97E2 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		7C5CEE5F2975608600C788DF /* Udemy-Bankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Udemy-Bankey.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C5CEE622975608600C788DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C5CEE662975608600C788DF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +113,8 @@
 		7C4E5BE32986FFD6004C97E2 /* Udemy-BankeyUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				7C4E5BEB2987066A004C97E2 /* CurrencyFormatterTests.swift */,
+				7C4E5BF92989A7D8004C97E2 /* AccountSummary */,
+				7C4E5BF82989A7CF004C97E2 /* Utils */,
 			);
 			path = "Udemy-BankeyUnitTests";
 			sourceTree = "<group>";
@@ -120,6 +125,23 @@
 				7C4E5BF2298930B0004C97E2 /* ShakeyBellView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		7C4E5BF82989A7CF004C97E2 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				7C4E5BEB2987066A004C97E2 /* CurrencyFormatterTests.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		7C4E5BF92989A7D8004C97E2 /* AccountSummary */ = {
+			isa = PBXGroup;
+			children = (
+				7C4E5BFA2989A7ED004C97E2 /* ProfileTests.swift */,
+				7C4E5BFC298A74CA004C97E2 /* AccountTests.swift */,
+			);
+			path = AccountSummary;
 			sourceTree = "<group>";
 		};
 		7C5CEE562975608600C788DF = {
@@ -312,6 +334,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C4E5BEC2987066A004C97E2 /* CurrencyFormatterTests.swift in Sources */,
+				7C4E5BFD298A74CA004C97E2 /* AccountTests.swift in Sources */,
+				7C4E5BFB2989A7ED004C97E2 /* ProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
