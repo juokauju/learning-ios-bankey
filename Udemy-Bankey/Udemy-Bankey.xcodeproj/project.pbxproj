@@ -15,11 +15,13 @@
 		7C4E5BF02987E108004C97E2 /* UITextField+SecureToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BEF2987E108004C97E2 /* UITextField+SecureToggle.swift */; };
 		7C4E5BF3298930B0004C97E2 /* ShakeyBellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BF2298930B0004C97E2 /* ShakeyBellView.swift */; };
 		7C4E5BF529894C3D004C97E2 /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BF429894C3D004C97E2 /* Date+Utils.swift */; };
-		7C4E5BF729895201004C97E2 /* AccountSummaryViewController+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BF629895201004C97E2 /* AccountSummaryViewController+Networking.swift */; };
 		7C4E5BFB2989A7ED004C97E2 /* ProfileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BFA2989A7ED004C97E2 /* ProfileTests.swift */; };
 		7C4E5BFD298A74CA004C97E2 /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BFC298A74CA004C97E2 /* AccountTests.swift */; };
 		7C4E5BFF298BDFB3004C97E2 /* SkeletonLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5BFE298BDFB3004C97E2 /* SkeletonLoadable.swift */; };
 		7C4E5C01298BEA53004C97E2 /* SkeletonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5C00298BEA53004C97E2 /* SkeletonCell.swift */; };
+		7C4E5C04298D1E47004C97E2 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5C03298D1E47004C97E2 /* ProfileManager.swift */; };
+		7C4E5C06298D2009004C97E2 /* AccountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5C05298D2009004C97E2 /* AccountManager.swift */; };
+		7C4E5C08298D2146004C97E2 /* AccounSummaryViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4E5C07298D2146004C97E2 /* AccounSummaryViewControllerTests.swift */; };
 		7C5CEE632975608600C788DF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CEE622975608600C788DF /* AppDelegate.swift */; };
 		7C5CEE672975608600C788DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5CEE662975608600C788DF /* LoginViewController.swift */; };
 		7C5CEE6C2975608C00C788DF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C5CEE6B2975608C00C788DF /* Assets.xcassets */; };
@@ -56,11 +58,13 @@
 		7C4E5BEF2987E108004C97E2 /* UITextField+SecureToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+SecureToggle.swift"; sourceTree = "<group>"; };
 		7C4E5BF2298930B0004C97E2 /* ShakeyBellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShakeyBellView.swift; sourceTree = "<group>"; };
 		7C4E5BF429894C3D004C97E2 /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
-		7C4E5BF629895201004C97E2 /* AccountSummaryViewController+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountSummaryViewController+Networking.swift"; sourceTree = "<group>"; };
 		7C4E5BFA2989A7ED004C97E2 /* ProfileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTests.swift; sourceTree = "<group>"; };
 		7C4E5BFC298A74CA004C97E2 /* AccountTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTests.swift; sourceTree = "<group>"; };
 		7C4E5BFE298BDFB3004C97E2 /* SkeletonLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonLoadable.swift; sourceTree = "<group>"; };
 		7C4E5C00298BEA53004C97E2 /* SkeletonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonCell.swift; sourceTree = "<group>"; };
+		7C4E5C03298D1E47004C97E2 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		7C4E5C05298D2009004C97E2 /* AccountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		7C4E5C07298D2146004C97E2 /* AccounSummaryViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccounSummaryViewControllerTests.swift; sourceTree = "<group>"; };
 		7C5CEE5F2975608600C788DF /* Udemy-Bankey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Udemy-Bankey.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C5CEE622975608600C788DF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C5CEE662975608600C788DF /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -146,8 +150,18 @@
 			children = (
 				7C4E5BFA2989A7ED004C97E2 /* ProfileTests.swift */,
 				7C4E5BFC298A74CA004C97E2 /* AccountTests.swift */,
+				7C4E5C07298D2146004C97E2 /* AccounSummaryViewControllerTests.swift */,
 			);
 			path = AccountSummary;
+			sourceTree = "<group>";
+		};
+		7C4E5C02298D1E0D004C97E2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				7C4E5C03298D1E47004C97E2 /* ProfileManager.swift */,
+				7C4E5C05298D2009004C97E2 /* AccountManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		7C5CEE562975608600C788DF = {
@@ -230,9 +244,9 @@
 			isa = PBXGroup;
 			children = (
 				7CC28C0A298168E2007437F2 /* AccountSummaryViewController.swift */,
-				7C4E5BF629895201004C97E2 /* AccountSummaryViewController+Networking.swift */,
 				7C4E5BD529829247004C97E2 /* Header */,
 				7C4E5BD729829257004C97E2 /* Cells */,
+				7C4E5C02298D1E0D004C97E2 /* Networking */,
 			);
 			path = AccountSummary;
 			sourceTree = "<group>";
@@ -341,6 +355,7 @@
 			files = (
 				7C4E5BEC2987066A004C97E2 /* CurrencyFormatterTests.swift in Sources */,
 				7C4E5BFD298A74CA004C97E2 /* AccountTests.swift in Sources */,
+				7C4E5C08298D2146004C97E2 /* AccounSummaryViewControllerTests.swift in Sources */,
 				7C4E5BFB2989A7ED004C97E2 /* ProfileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -352,6 +367,7 @@
 				7CC28C0D29817073007437F2 /* AccountSummaryHeaderView.swift in Sources */,
 				7C4E5C01298BEA53004C97E2 /* SkeletonCell.swift in Sources */,
 				7C4E5BF529894C3D004C97E2 /* Date+Utils.swift in Sources */,
+				7C4E5C06298D2009004C97E2 /* AccountManager.swift in Sources */,
 				7C4E5BF3298930B0004C97E2 /* ShakeyBellView.swift in Sources */,
 				7C4E5BDB29841F64004C97E2 /* Decimal+Utils.swift in Sources */,
 				7C4E5BD9298292FA004C97E2 /* AccountSummaryCell.swift in Sources */,
@@ -362,6 +378,7 @@
 				7CC28C0229801F29007437F2 /* LocalState.swift in Sources */,
 				7C5CEE672975608600C788DF /* LoginViewController.swift in Sources */,
 				7C9302362977E767002399A9 /* OnboardingViewController.swift in Sources */,
+				7C4E5C04298D1E47004C97E2 /* ProfileManager.swift in Sources */,
 				7C5CEE632975608600C788DF /* AppDelegate.swift in Sources */,
 				7C4E5BF02987E108004C97E2 /* UITextField+SecureToggle.swift in Sources */,
 				7C4E5BEE2987DD3C004C97E2 /* NSNotificationName.swift in Sources */,
@@ -369,7 +386,6 @@
 				7C9302342977DCCD002399A9 /* OnboardingContainerViewController.swift in Sources */,
 				7CC28C0829814AFF007437F2 /* MainViewController.swift in Sources */,
 				7C4E5BFF298BDFB3004C97E2 /* SkeletonLoadable.swift in Sources */,
-				7C4E5BF729895201004C97E2 /* AccountSummaryViewController+Networking.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

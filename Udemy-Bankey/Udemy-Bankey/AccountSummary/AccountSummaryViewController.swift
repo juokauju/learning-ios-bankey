@@ -21,12 +21,24 @@ class AccountSummaryViewController: UIViewController {
     private var tableView = UITableView()
     private var headerView = AccountSummaryHeaderView(frame: .zero)
     
-    var isLoaded = false
+    // Networking
+    var profileManager: ProfileManageable = ProfileManager()
+    var accountManager: AccountManageable = AccountManager()
     
+    private var isLoaded = false
+    
+    // Logout Button
     private lazy var logoutBarButtonItem: UIBarButtonItem = {
         let logoutBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
         logoutBarButtonItem.tintColor = .label
         return logoutBarButtonItem
+    }()
+    
+    // Error alert
+    lazy var errorAlert: UIAlertController = {
+        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
     }()
     
     override func viewDidLoad() {
@@ -155,10 +167,20 @@ extension AccountSummaryViewController {
     private func fetchData() {
         let group = DispatchGroup()
         
-        let userid = String(Int.random(in: 1..<4))
+        // Testing - random number selection
+        let userId = String(Int.random(in: 1..<4))
         
+        fetchProfile(group: group, userId: userId)
+        fetchAccounts(group: group, userId: userId)
+        
+        group.notify(queue: .main) {
+            self.reloadView()
+        }
+    }
+    
+    private func fetchProfile(group: DispatchGroup, userId: String) {
         group.enter()
-        fetchProfile(forUserId: userid) { result in
+        profileManager.fetchProfile(forUserId: userId) { result in
             switch result {
             case .success(let profile):
                 self.profile = profile
@@ -167,9 +189,11 @@ extension AccountSummaryViewController {
             }
             group.leave()
         }
-        
+    }
+    
+    private func fetchAccounts(group: DispatchGroup, userId: String) {
         group.enter()
-        fetchAccounts(forUserId: userid) { result in
+        accountManager.fetchAccounts(forUserId: userId) { result in
             switch result {
             case .success(let accounts):
                 self.accounts = accounts
@@ -178,21 +202,17 @@ extension AccountSummaryViewController {
             }
             group.leave()
         }
-        
-        reloadViewWhenFetched(by: group)
     }
     
-    private func reloadViewWhenFetched(by group: DispatchGroup) {
-        group.notify(queue: .main) {
-            self.tableView.refreshControl?.endRefreshing()
-            
-            guard let profile = self.profile else { return }
-            
-            self.isLoaded = true
-            self.configureTableHeaderView(with: profile)
-            self.configureTableCells(with: self.accounts)
-            self.tableView.reloadData()
-        }
+    private func reloadView() {
+        self.tableView.refreshControl?.endRefreshing()
+        
+        guard let profile = self.profile else { return }
+        
+        self.isLoaded = true
+        self.configureTableHeaderView(with: profile)
+        self.configureTableCells(with: self.accounts)
+        self.tableView.reloadData()
     }
     
     private func configureTableHeaderView(with profile: Profile) {
@@ -211,22 +231,38 @@ extension AccountSummaryViewController {
     }
     
     private func displayError(_ networkError: NetworkError) {
-        switch networkError {
+        let titleAndMessage = titleAndMessage(for: networkError)
+        showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+    
+    private func titleAndMessage(for error: NetworkError) -> (String, String) {
+        var title: String
+        var message: String
+        switch error {
         case .serverError:
-            showErrorAlert(title: "Network Error", message: "Please check your network connectivity and try again.")
+            title = "Server Error"
+            message = "Please check your network connectivity and try again."
         case .decodingError:
-            showErrorAlert(title: "Decoding Error", message: "We could not process your request. Please try again.")
+            title = "Decoding Error"
+            message = "We could not process your request. Please try again."
         }
+        return (title, message)
     }
     
     private func showErrorAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title,
-                                      message: message,
-                                      preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        present(alert, animated: true, completion: nil)
+        errorAlert.title = title
+        errorAlert.message = message
+        present(errorAlert, animated: true, completion: nil)
     }
 }
 
+// MARK: - Unit testing
+extension AccountSummaryViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        titleAndMessage(for: error)
+    }
+    
+    func forceFetchProfile() {
+        fetchProfile(group: DispatchGroup(), userId: "1")
+    }
+}
